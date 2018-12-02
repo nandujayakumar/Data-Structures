@@ -1,3 +1,5 @@
+/* The code contains the implementation of Linked List data structure */
+
 #include <stdlib.h>
 #include <stdio.h>
 
