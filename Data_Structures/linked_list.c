@@ -1,4 +1,4 @@
-/* The code contains the implementation of Linked List data structure */
+/* The code contains the implementation of singly Linked List and various operations */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,12 +15,17 @@ Node *head = NULL;
 void addElements(int data);
 void printList();
 void deleteNode(int data);
+void getSize();
 
 void main(){
 
     addElements(22);
     addElements(10);
     addElements(20);
+    addElements(34);
+    addElements(40);
+    addElements(45);
+    addElements(23);
     printList();
     deleteNode(22);
     printList();
@@ -35,7 +40,6 @@ void addElements(int data){
     temp -> next = NULL;
     
     if (head == NULL){
-
         head = temp;
         return;
     }
@@ -52,22 +56,25 @@ void addElements(int data){
 void deleteNode (int data){
 
     Node *temp = head;
-    if (head -> data == data){
+    Node *current_node,*previous_node;
 
+    if (head -> data == data){
         head = temp -> next;
         free (temp);
+        return;
     }
-}
+ }
 
 /* Print the LinkedList */
 void printList (){
 
     Node *current_node = head;
-    while (current_node){
 
+    while (current_node){
         printf("%i -> \t",current_node -> data);
         current_node = current_node -> next;
     }
+
     printf("NULL");
     printf("\n");
 }
