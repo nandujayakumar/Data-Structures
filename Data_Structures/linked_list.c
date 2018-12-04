@@ -27,8 +27,6 @@ void main(){
     addElements(45);
     addElements(23);
     printList();
-    deleteNode(22);
-    printList();
 }
 
 /* Add Elements to the LinkedList */
@@ -55,15 +53,30 @@ void addElements(int data){
 /* Delete a node from the Linked List */
 void deleteNode (int data){
 
-    Node *temp = head;
-    Node *current_node,*previous_node;
+    Node *current_node = head;
+    Node *previous_node;
 
+    /* If the node to be deleted is a head node then rearrange the head pointer  */
     if (head -> data == data){
-        head = temp -> next;
-        free (temp);
+        head = current_node -> next;
+        free (current_node);
         return;
     }
- }
+    current_node = head -> next;
+    previous_node = head;
+
+    /* For other nodes rearrange the pointer of the previous node */
+    while (current_node){
+        if (current_node -> data == data){
+            previous_node -> next = current_node -> next;
+            free (current_node);
+        }
+        else{
+            previous_node = current_node;
+            current_node = current_node -> next;
+        }
+    }
+}
 
 /* Print the LinkedList */
 void printList (){
@@ -77,4 +90,10 @@ void printList (){
 
     printf("NULL");
     printf("\n");
+}
+
+/* Print the size occupied by the Linked List */
+void getSize(){
+
+    Node *current_node = head;
 }
