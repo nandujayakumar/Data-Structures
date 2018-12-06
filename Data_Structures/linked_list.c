@@ -4,10 +4,8 @@
 #include <stdio.h>
 
 typedef struct node {
-
     int data;
     struct node *next;
-
 }Node;
 
 Node *head = NULL;
@@ -23,8 +21,6 @@ void main(){
     addElements(10);
     addElements(20);
     addElements(34);
-    addElements(40);
-    addElements(45);
     addElements(23);
     printList();
 }
@@ -62,6 +58,7 @@ void deleteNode (int data){
         free (current_node);
         return;
     }
+
     current_node = head -> next;
     previous_node = head;
 
