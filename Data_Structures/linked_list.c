@@ -13,6 +13,7 @@ Node *head = NULL;
 void addElements(int data);
 void printList();
 void deleteNode(int data);
+void swapNodes(int data1,int data2);
 void getSize();
 
 void main(){
@@ -22,6 +23,8 @@ void main(){
     addElements(20);
     addElements(34);
     addElements(23);
+    printList();
+    swapNodes(22,34);
     printList();
 }
 
@@ -40,7 +43,6 @@ void addElements(int data){
 
     current_node = head;
     while (current_node -> next != NULL){
-
         current_node = current_node -> next;
     }
     current_node -> next = temp; 
@@ -49,29 +51,19 @@ void addElements(int data){
 /* Delete a node from the Linked List */
 void deleteNode (int data){
 
-    Node *current_node = head;
-    Node *previous_node;
+    Node *current_node = head, *previous_node = NULL;
 
-    /* If the node to be deleted is a head node then rearrange the head pointer  */
-    if (head -> data == data){
-        head = current_node -> next;
-        free (current_node);
-        return;
+    while (current_node && current_node -> data != data){
+        previous_node = current_node;
+        current_node  = current_node -> next;
     }
-
-    current_node = head -> next;
-    previous_node = head;
-
-    /* For other nodes rearrange the pointer of the previous node */
-    while (current_node){
-        if (current_node -> data == data){
-            previous_node -> next = current_node -> next;
-            free (current_node);
-        }
-        else{
-            previous_node = current_node;
-            current_node = current_node -> next;
-        }
+    if (previous_node == NULL){
+        head = current_node -> next;
+        free(current_node);
+    }
+    else{
+        previous_node -> next = current_node -> next;
+        free (current_node);
     }
 }
 
@@ -89,8 +81,56 @@ void printList (){
     printf("\n");
 }
 
-/* Print the size occupied by the Linked List */
-void getSize(){
+/* Swap nodes without swapping the data of each node */
+void swapNodes(int data1,int data2){
 
-    Node *current_node = head;
+    // Same nodes cannot be swapped
+    if (data1 == data2){
+        return;
+    }
+    
+    // Search for x and keep track of the present and previous nodes
+    Node *current_Xnode = head, *previous_Xnode = NULL;
+
+    while (current_Xnode && current_Xnode -> data != data1){
+ 
+        previous_Xnode = current_Xnode;
+        current_Xnode = current_Xnode -> next;
+    }
+
+    // search for y and keep track of the previous and present nodes
+    Node *current_Ynode = head, *previous_Ynode = NULL;
+
+    while (current_Ynode && current_Ynode -> data != data2){
+
+        previous_Ynode = current_Ynode;
+        current_Ynode  = current_Ynode -> next;
+    }
+
+    // If X or Y is not present in the linkedlist
+    if (current_Xnode==NULL || current_Ynode==NULL){
+        return;
+    }
+
+    if (previous_Xnode != NULL){
+        previous_Xnode -> next = current_Ynode;
+    }
+    else{
+        head = current_Ynode;
+    }
+
+    if(previous_Ynode != NULL){
+        previous_Ynode -> next = current_Xnode;
+    }
+    else{
+        head = current_Xnode;
+    }
+    
+    Node *temp = current_Xnode -> next;
+    current_Xnode -> next = current_Ynode -> next;
+    current_Ynode -> next = temp; 
 }
+
+
+
+
