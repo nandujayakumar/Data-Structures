@@ -142,12 +142,16 @@ void reverseList(){
     Node *current_node = head , *previous_node = NULL;
     Node *temp = NULL;
     
+    // Temp variable stores the next link of the current_node
     while (current_node){
         temp = current_node -> next;
-
+        
+        // If the node is a head node then make the next of head node as NULL
         if (previous_node == NULL){
             current_node -> next = NULL;
         }
+
+        // If not a head node then make the next of current node as the previous node
         else{
             current_node -> next = previous_node;
         }
