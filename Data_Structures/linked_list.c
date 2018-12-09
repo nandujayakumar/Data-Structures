@@ -24,7 +24,7 @@ void main(){
     addElements(34);
     addElements(23);
     printList();
-    swapNodes(22,23);
+    swapNodes(10,23);
     printList();
 }
 
@@ -111,13 +111,16 @@ void swapNodes(int data1,int data2){
     if (current_Xnode==NULL || current_Ynode==NULL){
         return;
     }
-
+    
+    // Check if the X node is a head node or not
     if (previous_Xnode != NULL){
         previous_Xnode -> next = current_Ynode;
     }
     else{
         head = current_Ynode;
     }
+
+    // Check if the Y node is a head node or not
     if (previous_Ynode != NULL){
         previous_Ynode -> next = current_Xnode;
     }
@@ -125,6 +128,7 @@ void swapNodes(int data1,int data2){
         head = current_Xnode;
     }
     
+    // Swap the current pointers
     Node *temp = current_Xnode -> next;
     current_Xnode -> next = current_Ynode -> next;
     current_Ynode -> next = temp; 
