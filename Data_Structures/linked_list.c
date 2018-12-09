@@ -24,7 +24,7 @@ void main(){
     addElements(34);
     addElements(23);
     printList();
-    swapNodes(22,34);
+    swapNodes(22,23);
     printList();
 }
 
@@ -118,8 +118,7 @@ void swapNodes(int data1,int data2){
     else{
         head = current_Ynode;
     }
-
-    if(previous_Ynode != NULL){
+    if (previous_Ynode != NULL){
         previous_Ynode -> next = current_Xnode;
     }
     else{
