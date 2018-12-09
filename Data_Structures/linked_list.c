@@ -14,7 +14,7 @@ void addElements(int data);
 void printList();
 void deleteNode(int data);
 void swapNodes(int data1,int data2);
-void getSize();
+void reverseList();
 
 void main(){
 
@@ -24,7 +24,9 @@ void main(){
     addElements(34);
     addElements(23);
     printList();
-    swapNodes(10,23);
+    swapNodes(10,20);
+    printList();
+    reverseList();
     printList();
 }
 
@@ -134,6 +136,25 @@ void swapNodes(int data1,int data2){
     current_Ynode -> next = temp; 
 }
 
+/* Reverse the Linked list */
+void reverseList(){
 
+    Node *current_node = head , *previous_node = NULL;
+    Node *temp = NULL;
+    
+    while (current_node){
+        temp = current_node -> next;
+
+        if (previous_node == NULL){
+            current_node -> next = NULL;
+        }
+        else{
+            current_node -> next = previous_node;
+        }
+        previous_node= current_node;
+        current_node = temp;
+    }
+    head = previous_node;
+}
 
 
