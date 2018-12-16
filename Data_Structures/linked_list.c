@@ -27,6 +27,7 @@ void main(){
     swapNodes(10,20);
     printList();
     reverseList();
+    deleteNode(20);
     printList();
 }
 
@@ -53,19 +54,22 @@ void addElements(int data){
 /* Delete a node from the Linked List */
 void deleteNode (int data){
 
-    Node *current_node = head, *previous_node = NULL;
+    /* Use double pointer to avoid the conditional statements used for head nodes and intermediate nodes cases */
 
-    while (current_node && current_node -> data != data){
-        previous_node = current_node;
-        current_node  = current_node -> next;
-    }
-    if (previous_node == NULL){
-        head = current_node -> next;
-        free(current_node);
-    }
-    else{
-        previous_node -> next = current_node -> next;
-        free (current_node);
+    Node *current_node = head, **pp = &head;
+
+    while (current_node){
+        
+        // On finding the value de-reference the double pointer and change its next link
+
+        if (current_node -> data == data){
+            *pp = current_node -> next;
+             free(current_node);
+             break;
+        }
+
+        pp = &current_node -> next;
+        current_node = current_node -> next;
     }
 }
 
@@ -110,12 +114,12 @@ void swapNodes(int data1,int data2){
     }
 
     // If X or Y is not present in the linkedlist
-    if (current_Xnode==NULL || current_Ynode==NULL){
+    if (! current_Xnode || ! current_Ynode){
         return;
     }
     
     // Check if the X node is a head node or not
-    if (previous_Xnode != NULL){
+    if (previous_Xnode){
         previous_Xnode -> next = current_Ynode;
     }
     else{
@@ -123,7 +127,7 @@ void swapNodes(int data1,int data2){
     }
 
     // Check if the Y node is a head node or not
-    if (previous_Ynode != NULL){
+    if (previous_Ynode){
         previous_Ynode -> next = current_Xnode;
     }
     else{
