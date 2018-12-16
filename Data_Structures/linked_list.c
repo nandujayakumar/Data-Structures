@@ -54,20 +54,16 @@ void addElements(int data){
 /* Delete a node from the Linked List */
 void deleteNode (int data){
 
-    /* Use double pointer to avoid the conditional statements used for head nodes and intermediate nodes cases */
-
+    // Use double pointer to avoid the conditional statements
     Node *current_node = head, **pp = &head;
 
     while (current_node){
-        
         // On finding the value de-reference the double pointer and change its next link
-
         if (current_node -> data == data){
             *pp = current_node -> next;
              free(current_node);
              break;
         }
-
         pp = &current_node -> next;
         current_node = current_node -> next;
     }
@@ -77,7 +73,6 @@ void deleteNode (int data){
 void printList (){
 
     Node *current_node = head;
-
     while (current_node){
         printf("%i -> \t",current_node -> data);
         current_node = current_node -> next;
@@ -94,7 +89,6 @@ void swapNodes(int data1,int data2){
     if (data1 == data2){
         return;
     }
-    
     // Search for x and keep track of the present and previous nodes
     Node *current_Xnode = head, *previous_Xnode = NULL;
 

@@ -32,7 +32,6 @@ void main(){
 }
 
 /* Insert Elements to the linked list */
-
 void InsertElement(int data){
 
     Node *temp;
@@ -61,7 +60,6 @@ void InsertElement(int data){
 }
 
 /* Print the elements of the linked list in forward order */
-
 void PrintList(){
 
     Node *current_node = head;
@@ -75,8 +73,7 @@ void PrintList(){
 
 void ReversePrint(){
     
-    /* start from the end of the Linked List and iterate backwards using the previous field entry */
-
+    // Iterate with the tail pointer
     Node *current_node = tail;
 
     while (current_node){
@@ -90,14 +87,13 @@ void DeleteNode (int data){
 
     Node *current_node = head , **pp = &head ;
     
-    /* Iterate through the list to find the data */
+    // Iterate through the list to find the data 
     while (current_node){
         if (current_node -> data == data){
             *pp = current_node -> next ;
             free (current_node);
             break;
         }
-
         pp = &current_node -> next;
         current_node = current_node -> next;
     }
