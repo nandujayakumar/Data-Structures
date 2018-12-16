@@ -56,8 +56,9 @@ void deleteNode (int data){
 
     // Use double pointer to avoid the conditional statements
     Node *current_node = head, **pp = &head;
-
+     
     while (current_node){
+
         // On finding the value de-reference the double pointer and change its next link
         if (current_node -> data == data){
             *pp = current_node -> next;
