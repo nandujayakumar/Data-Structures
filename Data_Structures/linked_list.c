@@ -24,10 +24,7 @@ void main(){
     addElements(34);
     addElements(23);
     printList();
-    swapNodes(10,20);
-    printList();
-    reverseList();
-    deleteNode(20);
+    swapNodes(22,20);
     printList();
 }
 
@@ -86,78 +83,40 @@ void printList (){
 /* Swap nodes without swapping the data of each node */
 void swapNodes(int data1,int data2){
 
-    // Same nodes cannot be swapped
-    if (data1 == data2){
-        return;
-    }
-    // Search for x and keep track of the present and previous nodes
-    Node *current_Xnode = head, *previous_Xnode = NULL;
-
-    while (current_Xnode && current_Xnode -> data != data1){
- 
-        previous_Xnode = current_Xnode;
-        current_Xnode = current_Xnode -> next;
-    }
-
-    // search for y and keep track of the previous and present nodes
-    Node *current_Ynode = head, *previous_Ynode = NULL;
-
-    while (current_Ynode && current_Ynode -> data != data2){
-
-        previous_Ynode = current_Ynode;
-        current_Ynode  = current_Ynode -> next;
-    }
-
-    // If X or Y is not present in the linkedlist
-    if (! current_Xnode || ! current_Ynode){
-        return;
-    }
+    Node *current_node = head;
+    Node **pp1 = &head, *X_node = NULL;
     
-    // Check if the X node is a head node or not
-    if (previous_Xnode){
-        previous_Xnode -> next = current_Ynode;
-    }
-    else{
-        head = current_Ynode;
-    }
-
-    // Check if the Y node is a head node or not
-    if (previous_Ynode){
-        previous_Ynode -> next = current_Xnode;
-    }
-    else{
-        head = current_Xnode;
-    }
-    
-    // Swap the current pointers
-    Node *temp = current_Xnode -> next;
-    current_Xnode -> next = current_Ynode -> next;
-    current_Ynode -> next = temp; 
-}
-
-/* Reverse the Linked list */
-void reverseList(){
-
-    Node *current_node = head , *previous_node = NULL;
-    Node *temp = NULL;
-    
-    // Temp variable stores the next link of the current_node
+    //Find the data 1
     while (current_node){
-        temp = current_node -> next;
-        
-        // If the node is a head node then make the next of head node as NULL
-        if (previous_node == NULL){
-            current_node -> next = NULL;
+        if (current_node -> data == data1){
+            X_node = current_node;
+            break;
         }
-
-        // If not a head node then make the next of current node as the previous node
-        else{
-            current_node -> next = previous_node;
-        }
-        previous_node= current_node;
-        current_node = temp;
+        pp1 = &current_node -> next;
+        current_node = current_node -> next;
     }
-    head = previous_node;
+    
+    current_node = head;
+    Node **pp2 = &head, *Y_node = NULL;
+    
+    //Find the data 2
+    while (current_node){
+        if (current_node -> data == data2){
+            Y_node = current_node;
+            break;
+        }
+        pp2 = &current_node -> next;
+        current_node = current_node -> next;
+    }
+    
+    // Change the previous nodes first
+    *pp1 = Y_node;
+    *pp2 = X_node;
+    
+    //swap the nodes
+    Node *temp = X_node -> next;
+    X_node -> next = Y_node -> next;
+    Y_node -> next = temp;
 }
 
 
