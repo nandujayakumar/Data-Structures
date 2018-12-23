@@ -24,7 +24,7 @@ void main(){
     addElements(34);
     addElements(23);
     printList();
-    swapNodes(22,20);
+    swapNodes(22,30);
     printList();
 }
 
@@ -85,6 +85,11 @@ void swapNodes(int data1,int data2){
 
     Node *current_node = head;
     Node **pp1 = &head, *X_node = NULL;
+
+    //if data is same return
+    if (data1 == data2){
+        return;
+    }
     
     //Find the data 1
     while (current_node){
@@ -107,6 +112,11 @@ void swapNodes(int data1,int data2){
         }
         pp2 = &current_node -> next;
         current_node = current_node -> next;
+    }
+    
+    // If any of the node is null return
+    if (!X_node || !Y_node){
+        return;
     }
     
     // Change the previous nodes first
