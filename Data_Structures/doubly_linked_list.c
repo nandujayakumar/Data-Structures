@@ -98,3 +98,37 @@ void DeleteNode (int data){
         current_node = current_node -> next;
     }
 }
+
+void SwapNodes (int data1, int data2){
+
+    //If both values are same then return 
+    if (data1 == data2){
+        return;
+    }
+
+    //Find the X value to be swapped
+    Node *current_node = head;
+    Node **pp1 = &head, *X_node = NULL;
+
+    while (current_node){
+        if (current_node -> data == data1){
+            X_node = current_node;
+            break;
+        }
+        *pp1 = &current_node -> next;
+        current_node = current_node -> next;
+    }
+
+    //Find the Y value to be swapped
+    current_node = head;
+    Node **pp2 = &head, *Y_node = NULL;
+
+    while (current_node){
+        if (current_node -> data == data2){
+            Y_node = current_node;
+            break;
+        }
+        *pp2 = &current_node -> next;
+        current_node = current_node -> next;
+    }
+}
