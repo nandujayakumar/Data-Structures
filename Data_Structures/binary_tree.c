@@ -16,6 +16,9 @@ void InsertBetween(int data, BstNode *root);
 void DeleteElement(int data);
 void FindMin();
 void FindMax();
+void PreOrder(BstNode *root);
+void InOrder(BstNode *root);
+void PostOrder(BstNode *root);
 BstNode* CreateNode(int data);
 
 /* Root node always point to the start of the tree structure */
@@ -28,10 +31,18 @@ int main()
     InsertElement(45);
     InsertElement(5);
     InsertElement(2);
+    InsertElement(50);
     InsertElement(15);
     InsertElement(1);
     FindMin();
+    DeleteElement(45);
     FindMax();
+    PreOrder(root);
+    printf("\n");
+    InOrder(root);
+    printf("\n");
+    PostOrder(root);
+    printf("\n");
 }
 
 /* Create Binary tree node*/
@@ -53,7 +64,6 @@ void InsertElement(int data)
     if (root == NULL)
     {
         root = CreateNode(data);
-        printf("Root Node Added to the Binary Tree\n");
     }
     else
     {
@@ -114,4 +124,40 @@ void FindMax()
         current_node = current_node -> right;
     }
     printf("Maximum Element is %i \n",current_node -> data);
+}
+
+/* Delete a node from the Binary tree */
+
+void DeleteElement(int data)
+{
+}
+
+/* Iterate in this order root, left node, right node */
+
+void PreOrder(BstNode *root)
+{
+    if (root == NULL) return;
+    printf("%i\t",root -> data);
+    PreOrder (root -> left);
+    PreOrder (root -> right);
+}
+
+/* Iterate in this order left subtree, root, right subtree */
+
+void InOrder(BstNode *root)
+{
+    if (root == NULL) return;
+    InOrder(root -> left);
+    printf("%i\t", root -> data);
+    InOrder(root -> right);
+}
+
+/* Iterate in this order left subtree, right subree and root */
+
+void PostOrder (BstNode *root)
+{
+    if (root == NULL) return;
+    PostOrder(root -> left);
+    PostOrder(root -> right);
+    printf("%i\t",root -> data);
 }
