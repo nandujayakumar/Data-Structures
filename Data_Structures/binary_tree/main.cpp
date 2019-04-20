@@ -21,6 +21,7 @@ int main ()
 	obj.insert_element(36);
 	obj.delete_element (35);
 	obj.levelorder_traversal();
+    cout << endl;
 	
 	return 0;
 }

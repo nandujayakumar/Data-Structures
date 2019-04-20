@@ -118,6 +118,14 @@ Bstnode* binaryTree :: delete_element (int data, Bstnode *current)
 		/* Both the child nodes are not empty */
 		else
 		{
+            /* Find the minimum value in the right sub-tree */
+            Bstnode *temp = find_min_node (current -> right);
+ 
+            /* copy the inorder successor value to this node */
+            current -> data = temp -> data;
+
+            /* Delete the inorder successor */
+            current -> right = delete_element (temp -> data , current -> right);
 		}
 	}
 	return current;
@@ -148,3 +156,25 @@ int binaryTree :: find_max_element()
 	}
 	return current -> data;
 }
+
+Bstnode *find_min_node(Bstnode *current)
+{
+    while (current -> left)
+    {
+        current = current -> left;
+    }
+    
+    return current;
+}
+
+
+
+
+
+
+
+
+
+
+
+
