@@ -167,8 +167,16 @@ Bstnode *find_min_node(Bstnode *current)
     return current;
 }
 
+int binaryTree::find_height (Bstnode *current)
+{
+    if (current == NULL)
+        return 0;
 
+    int left_height = find_height (current -> left);
+    int right_height = find_height (current -> right);
 
+    return 1+ ((left_height > right_height) ? left_height : right_height);
+}
 
 
 

@@ -17,11 +17,11 @@ int main ()
 	obj.insert_element(35);
 	obj.insert_element(56);
 	obj.insert_element(58);
-	obj.insert_element(35);
 	obj.insert_element(36);
 	obj.delete_element (35);
 	obj.levelorder_traversal();
     cout << endl;
+    cout << obj.find_height() << endl;
 	
 	return 0;
 }

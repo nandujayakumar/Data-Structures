@@ -22,6 +22,7 @@ class binaryTree
 			void postorder_traversal (Bstnode *);
 			void levelorder_traversal (Bstnode *);
 			Bstnode* delete_element (int data, Bstnode *);
+            int find_height (Bstnode *);
 	public:
 			void insert_element (int data) {insert_element (data,root);}
 			void inorder_traversal () {inorder_traversal(root);}
@@ -32,6 +33,7 @@ class binaryTree
 			Bstnode* find_min_node (Bstnode *);
 			int find_min_element();
 			int find_max_element();
+            int find_height () {find_height(root);}
 };
 
 #endif
